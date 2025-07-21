@@ -1,1 +1,10 @@
 video/
+output/
+*.mp4
+*.pt
+*.zip
+auto_dataset/
+backups/
+__pycache__/
+*.pyc
+.DS_Store

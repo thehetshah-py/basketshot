@@ -13,12 +13,12 @@ class ShotDetector:
         self.overlay_text = "Waiting..."
         self.model = YOLO("best.pt")
         
-        self.class_names = ['Basketball', 'Basketball Hoop']
+        self.class_names = ['Basketball', 'Basketball Hoop', 'Person']
         self.device = get_device()
         # self.cap = cv2.VideoCapture(0) -to use webcam
 
         # Use video - replace text with your video path
-        self.cap = cv2.VideoCapture("basket5.mp4")
+        self.cap = cv2.VideoCapture("input/basket.mp4")
 
         self.ball_pos = [] 
         self.hoop_pos = []  
@@ -46,7 +46,7 @@ class ShotDetector:
             ret, self.frame = self.cap.read()
 
             if not ret:
-                # End of the video or an error occurred
+                # eov or error
                 break
 
             results = self.model(self.frame, stream=True, device=self.device)
@@ -77,6 +77,9 @@ class ShotDetector:
                     if conf > .5 and current_class == "Basketball Hoop":
                         self.hoop_pos.append((center, self.frame_count, w, h, conf))
                         cvzone.cornerRect(self.frame, (x1, y1, w, h))
+
+                    if current_class == "Person" and conf > 0.4:
+                        cvzone.cornerRect(self.frame, (x1, y1, w, h), colorC=(255, 255, 0))
 
             self.clean_motion()
             self.shot_detection()

@@ -1,13 +1,6 @@
-train: ...\train\images
-val: ...\valid\images
-test: ...\test\images
+train: auto_dataset/images/train
+val: auto_dataset/images/train
 
-# replace '...' with your local absolute paths
+nc: 3
+names: ['Basketball', 'Basketball Hoop', 'Person']
 
-# For a smaller (300 images), lighter dataset (faster training, fewer data):
-#   - Download here: https://universe.roboflow.com/034-ganesh-kumar-m-v-cs-r2lwe/basketball-lhqoe/dataset/1
-
-# For a larger (1300 images), more comprehensive dataset (more data, slower training):
-#   - Download here: https://universe.roboflow.com/robocon-qchql/hoops-chrie-ivyrc/dataset/3
-nc: 2
-names: ['Basketball', 'Basketball Hoop']
