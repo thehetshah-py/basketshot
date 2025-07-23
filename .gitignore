@@ -8,6 +8,5 @@ __pycache__/
 .DS_Store
 # Ignore all .pt files
 *.pt
-
 # But keep this specific file
 !best.pt
